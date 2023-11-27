@@ -1,34 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+document.getElementById("mad-lib-btn").addEventListener("click", buildMadLib);
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Mad Lib</title>
-    <link rel="stylesheet" href="madlibs.css">
-  </head>
+function buildMadLib() {
+  let pluralNoun = document.getElementById("plural-noun").value;
+  let adjective = document.getElementById("adjective").value;
+  let verb = document.getElementById("verb").value;
+  let noun = document.getElementById("noun").value;
+  let conjunction = document.getElementById("conjunction").value;
 
-<body>
-  <h1>Mad Lib</h1>
-  <hr>
+  // Check if all input fields are filled
+  if (pluralNoun && adjective && verb && noun && conjunction) {
+    let processes = [
+      '"There are too many ' + pluralNoun + ' on this ' + adjective + ' airplane!", I screamed. "Somebody has to ' + verb + ' ' + conjunction + ' the ' + noun + ' to solve this problem."',
+      '"In the land of ' + noun + ', there were ' + pluralNoun + ' with incredibly ' + adjective + ' abilities. They would often ' + verb + ' around and make everyone smile."',
+      '"Once upon a time, a ' + adjective + ' ' + noun + ' asked for the help of ' + pluralNoun + '. They needed to ' + verb + ' together to overcome the challenges ahead."',
+      '"The ' + noun + ' was so ' + adjective + ' that it could ' + verb + ' for hours without stopping. People would gather to watch its amazing performance."',
+      '"The ' + pluralNoun + ' were known for their ' + adjective + ' and ' + verb + ' skills. They could turn any ' + noun + ' into a work of art."',
+      '"The ' + adjective + ' ' + noun + ' and the ' + pluralNoun + ' lived happily ever after, always finding time to ' + verb + ' ' + conjunction + '."',
+      '"The mysterious ' + noun + ' was said to have ' + adjective + ' powers. Legend has it that it could ' + verb + ' anything it touched."',
+      '"The ' + pluralNoun + ' gathered around the ' + adjective + ' ' + noun + '. They decided to ' + verb + ' ' + conjunction + ' to create something amazing."',
+    ];
 
-  <h2>Mad Lib Instructions</h2>
-  <p>Fill in all of the input boxes, then click the <em>"Mad Lib"</em> button.</p>
-  <ul>
-    <li>Plural Noun: <input id="plural-noun" type="text"></li>
-    <li>Adjective: <input id="adjective" type="text"></li>
-    <li>Present Tense Verb: <input id="verb" type="text"></li>
-    <li>Noun: <input id="noun" type="text"></li>
-    <li>Conjunction: <input id="conjunction" type="text"></li>
-  </ul>
-  <p><button id="mad-lib-btn">Mad Lib</button></p>
-  <hr>
+    let randomProcess = processes[Math.floor(Math.random() * processes.length)];
+    document.getElementById("result").innerHTML = randomProcess;
 
-  <h2>Mad Lib Results</h2>
-  <p id="result"></p>
-
-  <script src="madlib.js"></script>
- 
-</body>
-
-</html>
+    // Clear input fields
+    document.getElementById("plural-noun").value = "";
+    document.getElementById("adjective").value = "";
+    document.getElementById("verb").value = "";
+    document.getElementById("noun").value = "";
+    document.getElementById("conjunction").value = "";
+  } else {
+    // Inform the user that all fields must be filled
+    document.getElementById("result").innerHTML = "Please fill in all the input fields.";
+  }
+}
